@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apply for Course | Fu-Glide</title>
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar container">
+        <a class="brand" href="../index.html"><span class="brand-mark">F</span><span>Fu-Glide</span></a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+        <div class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="about.html">About</a>
+          <div class="dropdown">
+            <button class="dropdown-toggle">Services <span>▾</span></button>
+            <div class="dropdown-menu">
+              <a href="software.html">Software Development</a>
+              <a href="software-achievements.html">Software Achievements</a>
+              <a href="app-development.html">App Development</a>
+              <a href="app-achievements.html">App Achievements</a>
+              <a href="tutoring.html">Tutoring Courses</a>
+              <a href="tutoring-achievements.html">Tutoring Achievements</a>
+            </div>
+          </div>
+          <a href="apply.html">Apply</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Apply for Course</p>
+          <h1>Start your learning journey with Fu-Glide.</h1>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container form-shell reveal">
+          <div class="section-heading">
+            <h2>Apply for a course</h2>
+            <p class="accent-text">Share your details and preferred program. We will send your application by WhatsApp and email instantly.</p>
+          </div>
+          <form id="applicationForm" class="contact-form" novalidate>
+            <div class="form-grid">
+              <label>Name<input type="text" id="name" required /></label>
+              <label>Email<input type="email" id="email" required /></label>
+              <label>Phone<input type="tel" id="phone" required /></label>
+              <label>Course<select id="course" required>
+                <option value="">Select a course</option>
+                <option>Python Programming</option>
+                <option>Web Development</option>
+                <option>App Development</option>
+              </select></label>
+            </div>
+            <div class="form-grid">
+              <label>Preferred batch/time<input type="text" id="batch" required /></label>
+              <label>Qualifications<textarea id="qualifications" rows="4" required></textarea></label>
+              <label class="full-width">Resume/Marksheet<input type="file" id="document" /></label>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Submit Application</button>
+              <!-- <button class="btn btn-secondary email-action" type="button">Send Email</button> -->
+            </div>
+            <p id="formMessage" class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div><h3>Fu-Glide</h3><p>Modern digital solutions and guided learning for ambitious teams and students.</p></div>
+        <div><h3>Quick Links</h3><ul><li><a href="about.html">About</a></li><li><a href="software.html">Software</a></li><li><a href="app-development.html">Apps</a></li><li><a href="tutoring.html">Tutoring</a></li></ul></div>
+        <div><h3>Connect</h3><div class="social-links"><a href="https://wa.me/9629255773" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:hello@fu-glide.com">Email</a></div></div>
+      </div>
+    </footer>
+
+    <a class="whatsapp-float" href="https://wa.me/9629255773?text=Hello%20Fu-Glide%2C%20I%20would%20like%20to%20connect." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WA</a>
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/forms.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>
