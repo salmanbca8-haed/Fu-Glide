@@ -259,16 +259,36 @@ li {
 .hero-signature {
   display: block;
   margin-top: 2rem;
+  position: relative;
+}
+
+.hero-signature__photo-wrap {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: 0;
+  
+}
+
+.hero-signature__photo-wrap::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50%;
+  background: linear-gradient(transparent, rgba(6, 17, 36, 0.95));
+  pointer-events: none;
 }
 
 .hero-signature__photo {
-  width: auto;
+  width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 0;
   border: none;
   box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
-  margin-bottom: 1rem;
+  display: block;
 }
 
 .hero-signature div {
