@@ -26,10 +26,11 @@ function createWhatsAppUrl(phone, text) {
 }
 
 function buildNotificationText(title, fields, values) {
+  const submittedAt = new Date().toLocaleString();
   const content = fields
     .map((field) => `${field.label}: ${values[field.id] || ''}`)
     .join('\n');
-  return `${title} Submission\n\n${content}`;
+  return `${title} Submission\nSubmitted: ${submittedAt}\n\n${content}`;
 }
 
 async function saveDocument(collectionName, payload) {
@@ -149,7 +150,8 @@ function attachFormHandler(formId, collectionName, fields, title) {
 
     try {
       dispatchNotifications(title, notificationFields, notificationValues);
-      saveDocument(collectionName, { ...values, createdAt: new Date().toISOString() }).catch((error) => {
+      const submittedAt = new Date().toISOString();
+      saveDocument(collectionName, { ...values, createdAt: submittedAt, submittedAt }).catch((error) => {
         console.error('Save failed:', error);
       });
       form.reset();
