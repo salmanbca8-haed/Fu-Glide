@@ -20,6 +20,26 @@ function createMailToUrl(subject, body) {
   return `mailto:${EMAIL_RECIPIENT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
+function openExternalUrl(url) {
+  if (url.startsWith('mailto:')) {
+    window.location.href = url;
+    return;
+  }
+
+  const popup = window.open(url, '_blank', 'noopener,noreferrer');
+
+  if (!popup) {
+    const helperLink = document.createElement('a');
+    helperLink.href = url;
+    helperLink.target = '_blank';
+    helperLink.rel = 'noopener noreferrer';
+    helperLink.style.display = 'none';
+    document.body.appendChild(helperLink);
+    helperLink.click();
+    helperLink.remove();
+  }
+}
+
 function createWhatsAppUrl(phone, text) {
   const cleaned = phone.replace(/[^0-9]/g, '');
   return `https://wa.me/${cleaned}?text=${encodeURIComponent(text)}`;
@@ -49,15 +69,15 @@ function dispatchNotifications(title, fields, values) {
   const whatsappUrl = createWhatsAppUrl(WHATSAPP_NUMBER, text);
   const mailtoUrl = createMailToUrl(`${title} Submission`, text);
 
-  window.open(whatsappUrl, '_blank');
-  window.location.href = mailtoUrl;
+  openExternalUrl(whatsappUrl);
+  openExternalUrl(mailtoUrl);
 }
 
 function dispatchEmailOnly(title, fields, values) {
   const text = buildNotificationText(title, fields, values);
   const mailtoUrl = createMailToUrl(`${title} Submission`, text);
 
-  window.location.href = mailtoUrl;
+  openExternalUrl(mailtoUrl);
 }
 
 function attachFormHandler(formId, collectionName, fields, title) {
@@ -155,7 +175,7 @@ function attachFormHandler(formId, collectionName, fields, title) {
         console.error('Save failed:', error);
       });
       form.reset();
-      showMessage('Thanks! Your message has been sent and shared via WhatsApp and email.');
+      showMessage('Thanks! Your message has been sent and shared via WhatsApp.');
     } catch (error) {
       console.error(error);
       showMessage('Something went wrong. Please try again later.', true);

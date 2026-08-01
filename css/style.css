@@ -76,10 +76,14 @@ button {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: white ;
+  background: white;
   backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(148, 163, 184, 0.16);
-  
+  transition: box-shadow var(--transition), background var(--transition), transform var(--transition);
+}
+
+.site-header:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .navbar {
@@ -95,6 +99,13 @@ button {
   height: auto;
   border-radius: 14px;
   object-fit: cover;
+  transition: transform var(--transition), filter var(--transition), box-shadow var(--transition);
+}
+
+.brand-logo:hover {
+  transform: scale(1.03);
+  filter: saturate(1.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
 }
 
 .nav-links {
@@ -112,14 +123,16 @@ button {
   cursor: pointer;
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
-  transition: background var(--transition), color var(--transition);
+  transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
 .nav-links a:hover,
 .dropdown-toggle:hover,
 .dropdown:hover .dropdown-toggle {
   background: rgba(255, 255, 255, 0.1);
-  color:rgba(246, 184, 75, 0.92);
+  color: rgba(246, 184, 75, 0.92);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .dropdown {
@@ -337,6 +350,7 @@ li {
   color: #fff;
   transform: translateZ(0);
   will-change: transform, opacity;
+  animation: cardEnter 0.65s ease both;
 }
 
 .hero-card .card-panel p,
@@ -446,6 +460,12 @@ label.full-width {
   gap: 2rem;
 }
 
+.form-actions {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 900px) {
   .form-grid,
   .contact-grid {
@@ -541,7 +561,8 @@ label.full-width {
   border-radius: 999px;
   font-weight: 700;
   cursor: pointer;
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition), background var(--transition);
+  animation: buttonPulse 4.2s ease-in-out infinite;
 }
 
 .btn-primary {
@@ -562,7 +583,9 @@ label.full-width {
 
 .btn-primary:hover,
 .btn-secondary:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.01);
+  filter: brightness(1.06);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
 }
 
 .accent-text {
@@ -643,6 +666,26 @@ label.full-width {
   }
   50% {
     transform: translateY(-6px);
+  }
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
   }
 }
 
@@ -740,6 +783,15 @@ label.full-width {
   .testimonial-card,
   .partner-card {
     padding: 1.3rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-actions .btn {
+    width: 100%;
   }
 
   .site-footer {
